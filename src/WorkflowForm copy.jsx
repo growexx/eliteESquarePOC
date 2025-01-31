@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Toaster, toast } from "react-hot-toast";
 
 const WorkflowForm = () => {
   const [initialWorkflowData, setInitialWorkflowData] = useState({
@@ -39,30 +38,6 @@ const WorkflowForm = () => {
     }
   }, [workflowHistory]);
 
-  // Show workflowReason as a toast message
-  useEffect(() => {
-    if (workflowReason) {
-      toast(
-        <div style={{ textAlign: "left" }}> {/* Align content to the left */}
-          <h3 className="font-semibold">Reason for Workflow:</h3>
-          <p className="text-md mt-1">{workflowReason}</p>
-        </div>,
-        {
-          duration: 50000,
-          position: "top-left", // Align to the top-left
-          style: {
-            background: "#432dd7",
-            color: "#fff",
-            padding: "16px",
-            borderRadius: "8px",
-            boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
-            textAlign: "left", // Ensure text alignment is left
-          },
-        }
-      );
-    }
-  }, [workflowReason]);
-
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -79,7 +54,7 @@ const WorkflowForm = () => {
     if (dynamicOptions.includes(selectedOption)) {
       setLoading(true);
       try {
-        const response = await fetch("http://localhost:3000/api/getNextWorkflow", {
+        const response = await fetch("https://3fe1-122-179-154-192.ngrok-free.app/process_workflow", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ option: selectedOption }),
@@ -145,7 +120,7 @@ const WorkflowForm = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/api/getNextWorkflow", {
+      const response = await fetch("https://3fe1-122-179-154-192.ngrok-free.app/process_workflow", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -188,6 +163,12 @@ const WorkflowForm = () => {
     return (
       <div key={workflowKey} className="p-8 max-w-lg mx-auto bg-white rounded-2xl shadow-lg mb-6" ref={workflowKey === currentWorkflow ? workflowRef : null}>
         <h2 className="text-2xl font-extrabold mb-6 text-center">{workflow.question}</h2>
+        {workflowReason && workflowKey === currentWorkflow && (
+          <div className="mt-4 p-3 bg-yellow-100 text-yellow-900 rounded-lg shadow-md">
+            <h3 className="font-semibold">Reason for Workflow:</h3>
+            <p className="text-md mt-1">{workflowReason}</p>
+          </div>
+        )}
         <form className="space-y-5">
           {workflow.fields?.map((field) => (
             <div key={field} className="flex flex-col">
@@ -281,20 +262,6 @@ const WorkflowForm = () => {
 
   return (
     <div className="p-8">
-      <Toaster
-        position="top-left" // Align toasts to the top-left corner
-        toastOptions={{
-          style: {
-            margin: "16px", // Add some margin
-            padding: "16px",
-            background: "#FEF3C7", // Background color (yellow-100)
-            color: "#92400E", // Text color (yellow-900)
-            borderRadius: "8px",
-            boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
-            textAlign: "left", // Align text to the left
-          },
-        }}
-      /> {/* Add this line to enable toast messages */}
       {workflowHistory.map((workflowKey) => renderWorkflow(workflowKey))}
       {renderWorkflow(currentWorkflow)}
       <div className="mt-6 text-center">
