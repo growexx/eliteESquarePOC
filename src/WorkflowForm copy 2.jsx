@@ -48,11 +48,11 @@ const WorkflowForm = () => {
           <p className="text-md mt-1">{workflowReason}</p>
         </div>,
         {
-          duration: 50000,
+          duration: 5000,
           position: "top-left", // Align to the top-left
           style: {
-            background: "#432dd7",
-            color: "#fff",
+            background: "#FEF3C7",
+            color: "#92400E",
             padding: "16px",
             borderRadius: "8px",
             boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
