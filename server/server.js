@@ -26,7 +26,7 @@ app.post("/api/getNextWorkflow", (req, res) => {
     ],
     [
       "Matthew Samuel Rodriguez",
-      "38.71%"
+      "60.71%"
     ],
     [
       "George Benjamin Moore",
@@ -34,7 +34,7 @@ app.post("/api/getNextWorkflow", (req, res) => {
     ],
     [
       "Steven Matthew Anderson",
-      "33.81%"
+      "88.81%"
     ],
     [
       "Jacob Douglas Thompson",
@@ -42,7 +42,7 @@ app.post("/api/getNextWorkflow", (req, res) => {
     ],
     [
       "David Edward Brown",
-      "30.80%"
+      "100.00%"
     ]
   ],
   "task3": "The user has an employment issue related to not receiving their final paycheck, which requires additional details about their employment status and the specifics of the issue."
