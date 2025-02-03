@@ -19,8 +19,38 @@ app.post("/api/getNextWorkflow", (req, res) => {
   const randomWorkflow = nextWorkflows[Math.floor(Math.random() * nextWorkflows.length)]; // Randomly select a workflow
 
   res.json({
-    "workflow2": "The user has a specific employment issue regarding their final paycheck, and this workflow is designed to gather detailed information about their employment status and the nature of the issue."
-  });
+  "Conflict Check": [
+    [
+      "Full Name",
+      "Similarity Percentage"
+    ],
+    [
+      "Matthew Samuel Rodriguez",
+      "38.71%"
+    ],
+    [
+      "George Benjamin Moore",
+      "36.81%"
+    ],
+    [
+      "Steven Matthew Anderson",
+      "33.81%"
+    ],
+    [
+      "Jacob Douglas Thompson",
+      "31.14%"
+    ],
+    [
+      "David Edward Brown",
+      "30.80%"
+    ]
+  ],
+  "task3": "The user has an employment issue related to not receiving their final paycheck, which requires additional details about their employment status and the specifics of the issue."
+});
+
+// {
+//   "workflow2": "The user has a specific employment issue regarding their final paycheck, and this workflow is designed to gather detailed information about their employment status and the nature of the issue."
+// }
 });
 
 // Start the server
